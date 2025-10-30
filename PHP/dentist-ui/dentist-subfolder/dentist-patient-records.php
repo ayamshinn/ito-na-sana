@@ -1,0 +1,162 @@
+<?php
+// ==========================================
+// dentist_patient_records.php
+// ==========================================
+
+// Example: database connection
+// include 'db_connect.php';
+
+// Example data (replace with DB query)
+$patients = [
+    [
+        'id' => 'P-1002',
+        'name' => 'Dracy Malibu',
+        'profile_img' => 'profile.jpg',
+        'phone' => '09521457896',
+        'email' => 'malibu.dracy@gmail.com',
+        'appointments' => 15
+    ],
+    [
+        'id' => 'P-1003',
+        'name' => 'Kevin Cruz',
+        'profile_img' => 'profile.jpg',
+        'phone' => '09781234567',
+        'email' => 'kevincruz@gmail.com',
+        'appointments' => 8
+    ]
+];
+?>
+
+<div id="dentist-patient-page-id" class="information-record-main-container">
+    <hr class="hr" style="color: #9E5B08;">
+
+    <div class="wrapper d-flex flex-wrap">
+        <div class="profile-container">
+            <div class="header-text d-flex flex-row mb-2">
+                <i class="fas fa-user-friends"></i>
+                <h3>Patient Information Records</h3>
+            </div>
+            <div class="description-header-text">
+                <p>Manage and update patient information records to ensure accurate and organized clinic data.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="information-record-container mt-4 border pt-2">
+        <section class="container-tools px-3">
+            <div class="container-tool-wrapper d-flex justify-content-end align-items-center gap-3 flex-wrap">
+
+                <!-- 🔍 Search bar -->
+                <div class="record-search-wrapper position-relative">
+                    <input type="text" name="record-searchbar" class="record-searchbar form-control" placeholder="Search">
+                    <i class="fas fa-search position-absolute"></i>
+                </div>
+
+                <!-- ⚙️ Filter dropdown -->
+                <div class="filter-search-container-wrapper position-relative">
+                    <button class="toggle-button active-tab" id="filterDropdownBtn" title="Filter Options">
+                        <i class="fa-solid fa-sliders"></i>
+                    </button>
+
+                    <div class="filter-dropdown-menu border rounded shadow-sm position-absolute bg-white py-2 mt-2"
+                        id="filterDropdownMenu"
+                        style="display: none; min-width: 180px; right: 0; z-index: 10;">
+                        <button class="dropdown-item filter-option w-100 text-start px-3 py-2" data-filter="alphabetical">
+                            <i class="fa-solid fa-arrow-down-a-z me-2"></i> Alphabetical
+                        </button>
+                        <button class="dropdown-item filter-option w-100 text-start px-3 py-2" data-filter="newest">
+                            <i class="fa-solid fa-clock-rotate-left me-2"></i> Newest
+                        </button>
+                        <button class="dropdown-item filter-option w-100 text-start px-3 py-2" data-filter="oldest">
+                            <i class="fa-regular fa-clock me-2"></i> Oldest
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 🧩 Toggle buttons -->
+                <div class="toggle-wrapper d-flex">
+                    <button class="toggle-button active-tab" data-target="record-tile-view-id" title="Tile View">
+                        <i class="fa-solid fa-table-columns"></i>
+                    </button>
+                    <button class="toggle-button" data-target="record-list-view-id" title="List View">
+                        <i class="fa-solid fa-list"></i>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <hr class="mt-2 mb-4" style="color: #9E5B08;">
+
+        <div class="count-show-container d-flex flex-row py-2">
+            <div class="count-show-header">Showing <?php echo count($patients); ?> of <?php echo count($patients); ?></div>
+            <div class="count-show-toggle-wrapper">
+                <button class="load-less">Load Less</button>
+                <button class="load-more">Load More</button>
+            </div>
+        </div>
+
+        <!-- =============================
+             TILE VIEW
+        ============================== -->
+        <div class="profile-box-main-container" id="record-tile-view-id">
+            <div class="row profile-box-container row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-4 ps-3">
+                <?php foreach ($patients as $patient): ?>
+                <div class="col-12 col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6 col-profile-box">
+                    <div class="profile-box" tabindex="0"
+                        data-target="../../PHP/dentist-ui/dentist-subfolder/dentist-patient-records-detailed.php"
+                        data-id="<?php echo htmlspecialchars($patient['id']); ?>">
+                        <div class="record-img-container">
+                            <img id="profile-img-id" src="<?php echo htmlspecialchars($patient['profile_img']); ?>" alt="Profile Picture">
+                        </div>
+                        <div class="info-container">
+                            <h3 id="information-record-name-id"><?php echo htmlspecialchars($patient['name']); ?></h3>
+                            <span id="information-record-pID-id"><?php echo htmlspecialchars($patient['id']); ?></span>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <!-- =============================
+             LIST VIEW
+        ============================== -->
+        <div class="profile-box-main-container hidden record-list-view-container p-0" id="record-list-view-id">
+            <div class="record-table-container px-3 pt-2 pb-5">
+                <div class="record-table-wrapper h-100 w-100">
+                    <table class="table record-list-view-tb mb-0" id="list-view-table-id">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Patient ID</th>
+                                <th>Phone Number</th>
+                                <th>Email Address</th>
+                                <th>Total Appointments</th>
+                            </tr>
+                        </thead>
+                        <tbody id="list-view-body-id">
+                            <?php foreach ($patients as $patient): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($patient['name']); ?></td>
+                                <td><?php echo htmlspecialchars($patient['id']); ?></td>
+                                <td><?php echo htmlspecialchars($patient['phone']); ?></td>
+                                <td><?php echo htmlspecialchars($patient['email']); ?></td>
+                                <td>
+                                    <div class="appointment-td-wrapper d-flex flex-row align-items-center">
+                                        <p class="mb-0" id="td-total-appointment-id"><?php echo $patient['appointments']; ?></p>
+                                        <button type="button" class="ms-auto td-view-button"
+                                            data-target="../../PHP/dentist-ui/dentist-subfolder/dentist-patient-records-detailed.php">
+                                            View Details
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
