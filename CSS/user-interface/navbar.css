@@ -1,0 +1,266 @@
+:root {
+  --color-primary: #f5e3cd;
+  --color-secondary: #fef3e7;
+  --color-secondary2: #fcf7f2;
+  --color-tertiary: #9e5b08;
+  --color-text: #703803;
+  --color-text2: #502803;
+}
+
+/* ========== GLOBAL RESET ========== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.navbar-main-container{
+  background-color: transparent;
+  position: absolute; /* Overlay on top of the hero section */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Make sure it’s above banner and other elements */
+}
+
+/* ===================== TOP NAV ===================== */
+.top-nav {
+  background-color: #bb9673;
+  font-size: 0.9rem;
+  padding: 0.4rem 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  /* border-bottom: 1px solid var(--color-tertiary); */
+
+}
+
+.top-nav-inner {
+  margin: 0 10%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.open-time-group {
+  display: flex;
+  align-items: center;
+  color: var(--color-secondary2);
+}
+
+.open-time-group i {
+  color: var(--color-secondary2);
+  margin-right: 0.5rem;
+}
+
+/* ===================== BOTTOM NAV ===================== */
+.bottom-nav-container {
+  background-color: var(--color-secondary);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+
+}
+
+.bottom-nav-inner {
+  margin: 0 10%;
+  padding: 0 1rem;
+}
+
+/* Remove Bootstrap gutter spacing */
+.bottom-nav-inner .row {
+  --bs-gutter-x: 0;
+}
+
+/* ===================== LOGO ===================== */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo img {
+  height: 45px;
+  width: auto;
+}
+
+.logo-text {
+  margin-left: 5px;
+}
+
+.logo-text h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-tertiary);
+  margin: 0;
+}
+
+.logo-text h5 {
+  font-size: 0.65rem;
+  color: var(--color-tertiary);
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ===================== NAVIGATION LINKS ===================== */
+.nav-links-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 60px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 400;
+  position: relative;
+  padding: 0.3rem 0;
+  transition: all 0.3s ease;
+  font-size: .85rem;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: var(--color-tertiary);
+}
+
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-tertiary);
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+  width: 100%;
+}
+.dropdown {
+  white-space: nowrap;
+}
+
+/* ===================== BUTTONS ===================== */
+.btn-signin {
+  background-color: #bb9673;
+  color: var(--color-secondary2);
+  font-weight: 500;
+  border: none;
+  border-radius: 20px;
+  padding: 0.4rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  font-size: .85rem;
+  border: 1px solid #70380348;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+
+}
+
+.btn-signin:hover {
+  background-color: var(--color-primary);
+  color: var(--color-text2);
+}
+
+.nav-links-inner-btn-login {
+  white-space: nowrap;
+}
+
+.btn-toggle-menu {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-text);
+  cursor: pointer;
+  display: none; /* hidden by default on desktop */
+}
+
+/* Center the buttons vertically */
+.nav-links-inner-btn-login,
+.nav-links-inner-btn-toggle-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1200px) {
+  .bottom-nav-inner,.top-nav-inner {
+    margin: 0 7.5%;
+  }
+}
+@media (max-width: 992px) {
+  .bottom-nav-inner,.top-nav-inner {
+    margin: 0 5%;
+  }
+
+  /* Hide main links by default on mobile */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--color-secondary2);
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid var(--color-primary);
+    padding: 1rem 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  /* Show toggle button */
+  .btn-toggle-menu {
+    margin-left: 1rem;
+    display: block;
+  }
+
+
+}
+
+@media (max-width: 768px) {
+  .bottom-nav-inner,.top-nav-inner {
+    margin: 0 3%;
+  }
+}
+
+/* Make the main navbar container fixed so it can slide */
+.navbar-main-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: transform 0.4s ease;
+}
+
+/* Initial state (both visible) */
+.navbar-main-container.show {
+  transform: translateY(0);
+}
+
+/* Scrolled state (only bottom nav visible) */
+.navbar-main-container.hide {
+  transform: translateY(-35px); /* adjust to exactly the height of your top-nav */
+}
+
+/* Optional smoothness for top & bottom */
+.top-nav,
+.bottom-nav-container {
+  transition: all 0.4s ease;
+}
