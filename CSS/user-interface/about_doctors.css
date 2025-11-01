@@ -1,27 +1,4 @@
-/* ===== Root Colors ===== */
-:root {
-  --color-primary: #F5E3CD;   /* light beige */
-  --color-secondary: #FEF3E7; /* softer background */
-  --color-tertiary: #9E5B08;  /* accent brown */
-  --color-text: #3a1d02;      /* main text */
-}
 
-/* ===== Global Styles ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #ffffff;
-  font-family: "Montserrat", sans-serif;
-}
-
-html, body {
-  width: 100%;
-  overflow-x: hidden; /* Prevent sideways scroll */
-}
 
 
 /*start of first banner */
@@ -308,22 +285,3 @@ footer p {
 /*footer end*/
 
 
-
-
-.Navbar {
-  position: fixed;   /* keep both bars together */
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  transition: transform 0.4s ease-in-out; /* smooth hide/show */
-}
-
-.top-nav {
-  height: 40px; /* fixed height for reference */
-  background: #eee;
-}
-
-.bottomNav {
-    background-color: #FEF3E7;
-}
