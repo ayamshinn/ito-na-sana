@@ -1,90 +1,43 @@
 <?php
+ob_start();  // Start buffering at the top
+// Your code here, including includes and headers
+
 session_start();
-require_once("../../PHP/config/db.php"); // adjust path if needed
+require_once("../../PHP/config/connection-db.php");
 
-// ========== USER SIGN IN ==========
-if (isset($_POST['signin'])) {
-    $username = $_POST['username'];
-    $password = $_POST['pass'];
-
-    $result = mysqli_query($conn, "SELECT * FROM users WHERE username='$username'");
-    
-    if (mysqli_num_rows($result) == 1) {
-        $user = mysqli_fetch_assoc($result);
-
-        if (password_verify($password, $user['password'])) {
-
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-
-            header("Location: index.php");
-            exit();
-        }
-    }
-
-    $_SESSION['error'] = "Invalid username or password!";
-    header("Location: index.php");
-    exit();
-}
-
-
-
-// ========== USER SIGN UP ==========
-if (isset($_POST['signup'])) {
-    $fname    = $_POST['Fname'];
-    $lname    = $_POST['Lname'];
-    $contact  = $_POST['Contact'];
-    $email    = $_POST['email'];
-    $username = $_POST['Username'];
-    $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-
-    // username check
-    $check = mysqli_query($conn, "SELECT * FROM users WHERE username='$username'");
-    if (mysqli_num_rows($check) > 0) {
-        $_SESSION['error'] = "Username already exists!";
-        header("Location: index.php");
-        exit();
-    }
-
-    mysqli_query($conn, "INSERT INTO users (fname,lname,contact,email,username,password)
-                         VALUES('$fname','$lname','$contact','$email','$username','$password')");
-
-    $_SESSION['success'] = "Account created successfully!";
-    header("Location: index.php");
-    exit();
-}
-
-
-
-// ========== ADMIN LOGIN ==========
+// ✅ ADMIN LOG IN
 if (isset($_POST['adminlogin'])) {
-    $admin = $_POST['admin-user'];
-    $pass  = $_POST['admin-pass'];
+    $admin_user = $_POST['admin-user'];
+    $admin_pass = $_POST['admin-pass'];
 
-    $result = mysqli_query($conn, "SELECT * FROM admins WHERE username='$admin'");
+    $query = "
+        SELECT u.*, r.role_name 
+        FROM Users_tb u
+        INNER JOIN Roles_tb r ON u.role_id = r.role_id
+        WHERE u.username = '$admin_user' AND r.role_name = 'Super Admin'
+    ";
     
+    $result = mysqli_query($conn, $query);
+
     if (mysqli_num_rows($result) == 1) {
         $adminData = mysqli_fetch_assoc($result);
 
-        if (password_verify($pass, $adminData['password'])) {
-
-            $_SESSION['admin_id'] = $adminData['id'];
+        if (password_verify($admin_pass, $adminData['password_hash'])) {
+            $_SESSION['admin_id']   = $adminData['user_id'];
             $_SESSION['admin_name'] = $adminData['username'];
+            $_SESSION['role']       = $adminData['role_name'];
 
-            header("Location: ../admin/dashboard.php");
+            header("Location: ../../PHP/admin-ui/admin-main.php");
             exit();
         }
     }
 
     $_SESSION['error'] = "Unauthorized admin login!";
-    header("Location: index.php");
+    header("../../PHP/user-interface/index.php");
     exit();
 }
+ob_end_flush();  // Flush at the end
 ?>
-
-
-
-
 <!-- Sign In/Sign Up Popup Modal -->
 <div class="authentication-modal-container" id="authentication-modal-container-id">
     <div id="container" class="container">
@@ -182,9 +135,9 @@ if (isset($_POST['adminlogin'])) {
         </div>
 
         <!-- 🚀 Admin Overlay (MOVED INSIDE container) -->
-        <div id="adminContainer" class="admin-container">
+        <div id="adminContainer" class="admin-container" >
             <div class="admin-grow">
-                <form method="POST">
+                <form method="POST"  action="../../PHP/admin-ui/admin-main.php">
                     <h2>Admin Log In</h2>
                     <div class="input-group">
                         <input type="text" id="admin-user" name="admin-user" required>
