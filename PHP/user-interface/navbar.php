@@ -34,10 +34,11 @@
                 <div class="col d-flex justify-content-end align-items-center ">
                     <div class="nav-links-container d-flex align-items-center ">
                         <ul class="nav-links">
-                            <li><a href="#" class="active">HOME</a></li>
-                            <li><a href="#">ABOUT</a></li>
+                            <li><a href="../../PHP/user-interface/index.php" class="active">HOME</a></li>
+                            <li><a href="../../PHP/user-interface/about.php">ABOUT</a></li>
                             <li class="dropdown">
-                                <a href="#">SERVICES ▾</a>
+                                <a href="../../PHP/user-interface/services.php">SERVICES </a>
+                                <button><i class="fa-solid fa-caret-down"></i></button>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Teeth Cleaning</a></li>
                                     <li><a href="#">Dental Checkup</a></li>
@@ -46,11 +47,11 @@
                                 </ul>
                             </li>
 
-                            <li><a href="#">DOCTORS</a></li>
-                            <li><a href="#">CONTACT</a></li>
+                            <li><a href="../../PHP/user-interface/doctors.php">DOCTORS</a></li>
+                            <li><a href="../../PHP/user-interface/contact.php">CONTACT</a></li>
                         </ul>
                         <div class="nav-links-inner-btn-login ps-4">
-                            <button class="btn-signin"><i class="fa-regular fa-user me-1 "></i>SIGN IN</button>
+                            <button class="btn-signin" data-target="authentication-modal-container-id"><i class="fa-regular fa-user me-1 "></i>SIGN IN</button>
                         </div>
 
                         <div class="nav-links-inner-btn-toggle-menu">

@@ -26,21 +26,8 @@
 
     <?php include '../../PHP/user-interface/navbar.php'; ?>
 
-    <!-- ======================================================================================================================================= -->
+    <?php include '../../PHP/user-interface/auth.php'; ?>
 
-
-
-    <script src="../../Javascript/user-interface/navbar.js"></script>
-    <script src="../../Javascript/user-interface/index.js"></script>
-
-
-    <!-- ======================================================================================================================================= -->
-
-
-    <!--Sign In Popup Modal-->
-    <div id="popupModal"></div>
-    <script src="../../Javascript/user-interface/auth.js"></script>
-    <!--Sign In Popup Modal-->
 
     <!-- ======================================================================================================================================= -->
     <div class="hero-banner">
@@ -157,7 +144,7 @@
                 <div class="col grid-col">
                     <div class="grid-item">
                         <div class="grid-img-container">
-                            <img src="../../Pictures/user-interface/icons/patient.png" alt="Patient Image">
+                            <img src="../../Pictures/user-interface/icons/patient1.png" alt="Patient Image">
                         </div>
                         <h3>Patient-Focused Approach</h3>
                         <p>We take the time to listen to your concerns, explain your treatment options clearly, and
@@ -179,9 +166,6 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
 
         <!--end-->
@@ -202,7 +186,7 @@
 
     <!-- Doctors Section -->
     <section class="doctors d-flex justify-content-center flex-column">
-        <h2>Our Doctors</h2>
+        <h2>Meet Our Doctors</h2>
         <div class="doctor-grid d-flex justify-content-center flex-column mt-3">
             <div class="doctor-grid-inner  ps-4 ">
                 <div class="row row-cols-xxl-4 row-cols-xl-4 row-cols-lg-2 row-cols-md-2 row-cols-sm-2 row-cols-1 ">
@@ -290,13 +274,18 @@
 
             <div class="service-card">
                 <img src="../../Pictures/user-interface/services/cosmetic care.png" alt="Cosmetic Care">
-                <div class="overlay-right">
+                <div class="overlay-right bg-info">
+
+                    <div class="overlay-header">
                     <h3>Cosmetic Care</h3>
+                    </div>
+                    <div class="overlay-content">
                     <ul>
                         <li><a href="../../PHP/user-interface/services.php#cosmetic-care">Tooth Filling</a></li>
                         <li><a href="../../PHP/user-interface/services.php#cosmetic-care">Teeth Whitening</a></li>
                         <li><a href="../../PHP/user-interface/services.php#cosmetic-care">Cosmetic Bonding</a></li>
                     </ul>
+                    </div>
                 </div>
             </div>
 
@@ -304,7 +293,7 @@
                 <img src="../../Pictures/user-interface/services/orthodontics_services.png" alt="Orthodontics">
                 <div class="overlay">
                     <h3>Orthodontics</h3>
-                    <ul>
+                    <ul class="ito bg-info">
                         <li><a href="../../PHP/user-interface/services.php#orthodontics">Metal Braces</a></li>
                         <li><a href="../../PHP/user-interface/services.php#orthodontics">Ceramic Braces</a></li>
                         <li><a href="../../PHP/user-interface/services.php#orthodontics">Self Ligating Braces</a></li>
@@ -467,6 +456,9 @@
         </div>
     </footer>
     <!--Footer Section-->
+    <script src="../../Javascript/user-interface/navbar.js"></script>
+    <script src="../../Javascript/user-interface/index.js"></script>
+    <script src="../../Javascript/user-interface/auth.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
