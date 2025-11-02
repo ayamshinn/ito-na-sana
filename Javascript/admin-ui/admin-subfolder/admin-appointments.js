@@ -157,8 +157,7 @@ function initAdminAppointments() {
         dateSpan.innerText = date.toDateString();  // Populate the date in the edit modal
     }
 
-     function openAdminViewModal(date, dayAppointments) {
-        console.log('Opening view modal for date:', date, 'with appointments:', dayAppointments); // Debug
+    function openAdminViewModal(date, dayAppointments) {
         const modal = document.getElementById('shared-view-appointments-modal-id');
         const dateSpan = document.getElementById('view-modal-date');
         const listContainer = document.querySelector('.view-appointments-list');
@@ -167,93 +166,112 @@ function initAdminAppointments() {
 
         dateSpan.textContent = date.toDateString();
 
-      // Clear the <ul> and repopulate with <li> elements
-    ul.innerHTML = '';
-    dayAppointments.forEach((app, index) => {
-        const li = document.createElement('li');
-        li.innerHTML = `<i class="fa-solid fa-user"></i><span data-id="patient-appointment-view-id" data-target="shared-view-detailed-appointments-id">${app.patient} - ${app.time}</span>`;
-        const span = li.querySelector('span');
-        span.addEventListener('click', () => {
-            listContainer.classList.add('hidden');
-            titleContainer.classList.add('hidden');
-            const detailedModal = document.getElementById('shared-view-detailed-appointments-id');
-            detailedModal.classList.remove('hidden');
-            openDetailedView(app);
+        // Clear the <ul> and repopulate with <li> elements
+        ul.innerHTML = '';
+        dayAppointments.forEach((app, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `<i class="fa-solid fa-user"></i><span data-id="patient-appointment-view-id" data-target="shared-view-detailed-appointments-id">${app.patient} - ${app.time}</span>`;
+            const span = li.querySelector('span');
+            span.addEventListener('click', () => {
+                listContainer.classList.add('hidden');
+                titleContainer.classList.add('hidden');
+                const detailedModal = document.getElementById('shared-view-detailed-appointments-id');
+                detailedModal.classList.remove('hidden');
+                openDetailedView(app);
+            });
+            ul.appendChild(li);
         });
-        ul.appendChild(li);
-    });
-    // Ensure the list and title are visible, and detailed view is hidden
-    listContainer.classList.remove('hidden');
-    titleContainer.classList.remove('hidden');
-    const detailedModal = document.getElementById('shared-view-detailed-appointments-id');
-    detailedModal.classList.add('hidden');
-    modal.style.display = 'block';
-}
+        // Ensure the list and title are visible, and detailed view is hidden
+        listContainer.classList.remove('hidden');
+        titleContainer.classList.remove('hidden');
+        const detailedModal = document.getElementById('shared-view-detailed-appointments-id');
+        detailedModal.classList.add('hidden');
+        modal.style.display = 'block';
     }
+}
 
-    function openDetailedView(appointment) {
-        console.log('Opening detailed view for:', appointment.patient); // Debug
+function openDetailedView(appointment) {
+    console.log('Opening detailed view for:', appointment.patient); // Debug
+    const detailedModal = document.getElementById('shared-view-detailed-appointments-id');
+
+    document.getElementById('shared-view-detailed-patient').textContent = appointment.patient;
+    document.getElementById('detail-date').textContent = appointment.date;
+    document.getElementById('detail-time').textContent = appointment.time;
+    document.getElementById('detail-service').textContent = appointment.service;
+    document.getElementById('detail-dentist').textContent = appointment.dentist;
+    document.getElementById('detail-fee').textContent = appointment.fee;
+    document.getElementById('detail-duration').textContent = appointment.duration;
+    document.getElementById('detail-phone').textContent = appointment.phone;
+    document.getElementById('detail-email').textContent = appointment.email;
+
+    detailedModal.classList.remove('hidden');
+}
+
+// Close button handlers: Remove active state from both buttons
+const addCloseBtn = document.querySelector('.shared-appointment-close-modal-btn');
+const editCloseBtn = document.querySelector('.btn-close-edit-appointment-schedule');
+
+if (addCloseBtn) {
+    addCloseBtn.addEventListener('click', () => {
+        document.querySelector('.shared-edit-appointment-schedule-modal').style.display = 'none';
+        addBtn.classList.remove('active');
+        editBtn.classList.remove('active');
+    });
+}
+
+if (editCloseBtn) {
+    editCloseBtn.addEventListener('click', () => {
+        document.getElementById('edit-appointment-schedule').style.display = 'none';
+        addBtn.classList.remove('active');
+        editBtn.classList.remove('active');
+    });
+}
+
+const viewCloseBtn = document.querySelector('.btn-close-view-appointments');
+const backBtn = document.querySelector('.back-to-appointment-btn');
+const detailedCloseBtn = document.querySelector('.shared-view-detailed-btn');
+if (viewCloseBtn) {
+    viewCloseBtn.addEventListener('click', () => {
+        // Close the entire view modal
+        document.getElementById('shared-view-appointments-modal-id').style.display = 'none';
+    });
+}
+if (backBtn) {
+    backBtn.addEventListener('click', () => {
+        // Go back to the list view: hide detailed, show list and title
+        const listContainer = document.querySelector('.view-appointments-list');
+        const titleContainer = document.querySelector('.shared-view-appointments-title');
         const detailedModal = document.getElementById('shared-view-detailed-appointments-id');
 
-        document.getElementById('shared-view-detailed-patient').textContent = appointment.patient;
-        document.getElementById('detail-date').textContent = appointment.date;
-        document.getElementById('detail-time').textContent = appointment.time;
-        document.getElementById('detail-service').textContent = appointment.service;
-        document.getElementById('detail-dentist').textContent = appointment.dentist;
-        document.getElementById('detail-fee').textContent = appointment.fee;
-        document.getElementById('detail-duration').textContent = appointment.duration;
-        document.getElementById('detail-phone').textContent = appointment.phone;
-        document.getElementById('detail-email').textContent = appointment.email;
-
-        detailedModal.classList.remove('hidden');
-    }
-
-    // Close button handlers: Remove active state from both buttons
-    const addCloseBtn = document.querySelector('.shared-appointment-close-modal-btn');
-    const editCloseBtn = document.querySelector('.btn-close-edit-appointment-schedule');
-
-    if (addCloseBtn) {
-        addCloseBtn.addEventListener('click', () => {
-            document.querySelector('.shared-edit-appointment-schedule-modal').style.display = 'none';
-            addBtn.classList.remove('active');
-            editBtn.classList.remove('active');
-        });
-    }
-
-    if (editCloseBtn) {
-        editCloseBtn.addEventListener('click', () => {
-            document.getElementById('edit-appointment-schedule').style.display = 'none';
-            addBtn.classList.remove('active');
-            editBtn.classList.remove('active');
-        });
-    }
-
-    const viewCloseBtn = document.querySelector('.btn-close-view-appointments');
-    const backBtn = document.querySelector('.back-to-appointment-btn');
-    const detailedCloseBtn = document.querySelector('.shared-view-detailed-btn');
-    if (viewCloseBtn) {
-        viewCloseBtn.addEventListener('click', () => {
-            // Close the entire view modal
-            document.getElementById('shared-view-appointments-modal-id').style.display = 'none';
-        });
-    }
-    if (backBtn) {
-        backBtn.addEventListener('click', () => {
-            // Go back to the list view: hide detailed, show list and title
-            const listContainer = document.querySelector('.view-appointments-list');
-            const titleContainer = document.querySelector('.shared-view-appointments-title');
-            const detailedModal = document.getElementById('shared-view-detailed-appointments-id');
-            
-            detailedModal.classList.add('hidden');
-            listContainer.classList.remove('hidden');
-            titleContainer.classList.remove('hidden');
-        });
-         if (detailedCloseBtn) {
+        detailedModal.classList.add('hidden');
+        listContainer.classList.remove('hidden');
+        titleContainer.classList.remove('hidden');
+    });
+    if (detailedCloseBtn) {
         detailedCloseBtn.addEventListener('click', () => {
             // Close the entire view modal
             document.getElementById('shared-view-appointments-modal-id').style.display = 'none';
         });
     }
-}   
+
+
+    //FOR CLOSING THE MODAL IN THE BUTTON CANCEL
+    const addCancelBtn = document.querySelector('.cancel-appointment-btn');  // For Add modal
+    const editCancelBtn = document.querySelector('.cancel-appointmentbtn');  // For Edit modal (note: class name has a typo in HTML, but matches your code)
+    if (addCancelBtn) {
+        addCancelBtn.addEventListener('click', () => {
+            document.querySelector('.shared-edit-appointment-schedule-modal').style.display = 'none';
+            addBtn.classList.remove('active');
+            editBtn.classList.remove('active');
+        });
+    }
+    if (editCancelBtn) {
+        editCancelBtn.addEventListener('click', () => {
+            document.getElementById('edit-appointment-schedule').style.display = 'none';
+            addBtn.classList.remove('active');
+            editBtn.classList.remove('active');
+        });
+    }
+}
 
 document.addEventListener("DOMContentLoaded", initAdminAppointments)

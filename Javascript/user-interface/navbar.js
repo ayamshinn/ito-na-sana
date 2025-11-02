@@ -1,72 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
   const navbar = document.querySelector(".navbar-main-container");
-  const signinBtn = document.querySelector(".btn-signin");
-  const modal = document.getElementById("authentication-modal-container-id");
-  const container = document.getElementById("container");
-  const adminContainer = document.getElementById("adminContainer");
-  const registerBtn = document.getElementById("Sign Up");
-  const loginBtn = document.getElementById("Sign In");
-  const adminBtn = document.getElementById("adminLoginBtn");
-  const closeModalBtn = document.getElementById("closeModal");
+  const navLinks = document.querySelectorAll(".nav-links a");
 
-  // === 🧭 Navbar scroll effect ===
-  if (navbar) {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add("hide");
-        navbar.classList.remove("show");
-      } else {
-        navbar.classList.add("show");
-        navbar.classList.remove("hide");
-      }
-    });
-  }
+  // ===== Add Active Class Based on Current Page =====
+  const currentPage = window.location.pathname.split("/").pop(); // e.g. "about.php"
 
-  // === 🔐 Auth modal controls ===
-  if (signinBtn && modal) {
-    signinBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      modal.style.display = "flex";
-      document.body.classList.add("modal-open");
-    });
-  }
+  navLinks.forEach(link => {
+    const linkPage = link.getAttribute("href").split("/").pop(); // e.g. "about.php"
 
-  if (closeModalBtn && modal) {
-    closeModalBtn.addEventListener("click", () => {
-      modal.style.display = "none";
-      container?.classList.remove("active");
-      adminContainer?.classList.remove("active");
-      document.body.classList.remove("modal-open");
-    });
-  }
-
-  // Background click closes modal
-  window.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      modal.style.display = "none";
-      container?.classList.remove("active");
-      adminContainer?.classList.remove("active");
-      document.body.classList.remove("modal-open");
+    if (currentPage === linkPage) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
     }
   });
 
-  // Switch between Sign Up, Sign In, Admin forms
-  registerBtn?.addEventListener("click", () => {
-    container.classList.add("active");
-    adminContainer.classList.remove("active");
-  });
+  // ===== Hide/Show Navbar on Scroll =====
+  if (!navbar) return;
 
-  loginBtn?.addEventListener("click", () => {
-    container.classList.remove("active");
-    adminContainer.classList.remove("active");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add("hide");
+      navbar.classList.remove("show");
+    } else {
+      navbar.classList.add("show");
+      navbar.classList.remove("hide");
+    }
   });
-
-  adminBtn?.addEventListener("click", () => {
-    adminContainer.classList.add("active");
-    container.classList.remove("active");
-  });
-
-  window.goBack = function () {
-    adminContainer.classList.remove("active");
-  };
 });

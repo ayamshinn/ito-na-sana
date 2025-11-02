@@ -56,3 +56,28 @@ document.addEventListener("DOMContentLoaded", () => {
     adminContainer.classList.remove('active');
   };
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById('authentication-modal-container-id');
+  const container = document.getElementById('container');
+
+  // ✅ If login or admin login failed, auto-show modal
+  if (window.location.search.includes('auth=failed') || window.location.search.includes('error')) {
+    modal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+  }
+
+  // ✅ After successful registration → show login form
+  if (window.location.search.includes('registered=1')) {
+    modal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+    container.classList.remove('active');  // Make sure Sign In is visible, not Sign Up
+  }
+  if (window.location.search.includes('signup=error')) {
+    modal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+    container.classList.add('active'); // ✅ Show Sign Up form
+  }
+  
+});

@@ -162,7 +162,7 @@ function initPageScript(pageUrl) {
       initAdminInventoryReport();
     } else {
       const script = document.createElement('script');
-      script.src = '../../Javascript/admin-ui/admin-subfolder/report-folder/admin-inventory-reports.js';
+      script.src = '../../Javascript/admin-ui/admin-subfolder/report-folder/admin-inventory-report.js';
       script.defer = true;
       script.onload = () => initAdminInventoryReport();
       document.body.appendChild(script);
@@ -173,7 +173,7 @@ function initPageScript(pageUrl) {
       initAdminFinancialReport();
     } else {
       const script = document.createElement('script');
-      script.src = '../../Javascript/admin-ui/admin-subfolder/report-folder/admin-financial-reports.js';
+      script.src = '../../Javascript/admin-ui/admin-subfolder/report-folder/admin-financial-report.js';
       script.defer = true;
       script.onload = () => initAdminFinancialReport();
       document.body.appendChild(script);
@@ -184,7 +184,7 @@ function initPageScript(pageUrl) {
       initAdminAppointmentReport();
     } else {
       const script = document.createElement('script');
-      script.src = '../../Javascript/admin-ui/admin-subfolder/report-folder/admin-appointment-reports.js';
+      script.src = '../../Javascript/admin-ui/admin-subfolder/report-folder/admin-appointment-report.js';
       script.defer = true;
       script.onload = () => initAdminAppointmentReport();
       document.body.appendChild(script);
