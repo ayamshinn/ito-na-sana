@@ -1,0 +1,248 @@
+:root {
+    --color-primary: #F5E3CD;
+    --color-secondary: #FEF3E7;
+    --color-secondary2: #fcf7f2;
+    --color-tertiary: #9E5B08;
+    --color-text: #703803;
+    --color-text2: #502803;
+}
+
+.inventory-report-main-container {
+    padding: 15px 10px 20px 30px;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* ===============================
+   Inventory Report Styles
+   Matches Financial Report Layout
+   =============================== */
+
+.inventory-report-overview h3 {
+    font-size: 1rem;
+    color: var(--color-text);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* Container for the entire inventory section */
+.inventory-report-container-box {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Each box wrapper (Most Used / Least Used) */
+.inventory-report-box-wrapper {
+    border: 1px solid #5028036c;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+}
+
+/* Title section (centered heading) */
+.inventory-report-title {
+    text-align: center;
+}
+
+.inventory-report-title h3 {
+    font-size: 1rem;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+/* Main box content (flex layout) */
+.inventory-report-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Left icon + list group */
+.inventory-report-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Icon container (circle background) */
+.inventory-report-icon-container {
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--color-primary);
+    border-radius: 50px;
+    background-color: var(--color-primary);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+/* Font Awesome icon */
+.inventory-report-icon i {
+    font-size: 1.2rem;
+    color: var(--color-text);
+}
+
+/* List of items */
+.inventory-report-list {
+    color: var(--color-text);
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+
+
+/* Donut chart container (right side) */
+.inventory-report-metrics {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 180px;
+}
+
+.inventory-report-metrics canvas {
+    max-width: 160px;
+    max-height: 160px;
+}
+/* Optional: hover effect for interactivity */
+.inventory-report-box-wrapper:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+    transition: background-color 0.3s ease;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .inventory-report-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .inventory-report-metrics {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+
+
+.inventory-table-report-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 50vh;
+    position: relative;
+    background-color: white;
+    border: 1px solid #502c006c;
+    scroll-behavior: smooth;
+}
+
+.inventory-report thead th {
+    position: sticky;
+    top: 0;
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+    font-weight: 600;
+    padding: 1rem;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inventory-report tbody td {
+    color: var(--color-text);
+    padding: 1.2rem;
+    background-color: var(--color-bg, #fff);
+    white-space: normal;
+    word-break: break-word;
+}
+
+.inventory-report tbody {
+    border-radius: 2rem;
+}
+
+.inventory-report {
+    table-layout: fixed;
+    word-wrap: break-word;
+    word-break: break-word;
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 1000px;
+    font-size: .90rem;
+}
+
+.inventory-report th:first-child,
+.inventory-report td:first-child {
+    border-left: none;
+}
+
+.inventory-report th:last-child,
+.inventory-report td:last-child {
+    border-left: none;
+}
+
+.inventory-report thead th {
+    border-top: none;
+}
+
+.inventory-report tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.inventory-report::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.inventory-report::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* track color */
+    border-radius: 6px;
+    padding-top: 1px;
+}
+
+.inventory-report::-webkit-scrollbar-thumb {
+    background: #b88b4a;
+    /* thumb color */
+    border-radius: 6px;
+}
+
+.inventory-report::-webkit-scrollbar-thumb:hover {
+    background: #946b36;
+}
+
+/* Revenue Graph */
+.inventory-report-graph-wrapper {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    border: 1px solid #50280352;
+}
+.inventory-report-graph-title h3 {
+    font-size: 1rem;
+    color: var(--color-text);
+}
+.inventory-report-graph-p p{
+    font-size: .8rem;
+    color: var(--color-text);
+}
+
+.inventory-report-graph-container {
+    display: flex;
+    height: 400px;
+    margin: 0;
+    width: 100%;
+}
+
+.inventory-report-graph-container canvas {
+    max-height: 500px;
+}

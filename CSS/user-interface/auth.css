@@ -879,3 +879,11 @@ font-size: 1.5vw;
     padding: 12px;
   }
 }
+
+
+.error-msg {
+  color: red;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 10px;
+}

@@ -68,7 +68,7 @@ body {
   align-items: center;
   justify-content: center; 
   border-bottom: 3px solid var(--color-primary);
-  padding: 0;
+  padding: 10px 0;
 }
 .toggle-sidebar {
   opacity: 0;
