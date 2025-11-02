@@ -1,5 +1,3 @@
-<!--Navigation Bar-->
-<!-- Top nav -->
 <div class="navbar-main-container">
     <!-- Top Nav -->
     <div class="top-nav">

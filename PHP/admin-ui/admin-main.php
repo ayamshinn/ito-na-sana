@@ -1,12 +1,8 @@
 <?php
-session_start();
+require_once("../config/check-session-folder/check-session-admin.php"); // ✅ Correct relative path
 
-// Optional: check if admin is logged in
-// if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
-//   header('Location: ../../PHP/user-interface/index.php');
-//   exit;
-// }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +26,11 @@ session_start();
     <link rel="stylesheet" href="../../CSS/admin-ui/admin-backup-css/admin-help.css">
     <link rel="stylesheet" href="../../CSS/admin-ui/admin-backup-css/admin-shared-management-detailed.css">
     <link rel="stylesheet" href="../../CSS/admin-ui/admin-backup-css/shared-printable-information-record.css">
+    <link rel="stylesheet" href="../../CSS/admin-ui/admin-backup-css/report-folder/admin-appointment-report.css">
+    <link rel="stylesheet" href="../../CSS/admin-ui/admin-backup-css/report-folder/admin-financial-report.css">
+    <link rel="stylesheet" href="../../CSS/admin-ui/admin-backup-css/report-folder/admin-inventory-report.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 
     <style>
@@ -182,7 +182,7 @@ session_start();
 
                 <!-- Logout -->
                 <div class="sidebar-logout pe-2">
-                    <a href="../../PHP/user-interface/index.php"
+                    <a href="../../PHP/config/logout.php"
                         class="btn-sidebar sidebar-logout-btn d-flex align-items-center" id="logoutBtn">
                         <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
                     </a>

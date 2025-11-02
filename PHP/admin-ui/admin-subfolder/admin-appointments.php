@@ -9,19 +9,21 @@
                     <h3>Appointments</h3>
                 </div>
                 <div class="description-header-text">
-                    <p>Manage and see your appointments.</p>
+                    <p>Stay on top of every appointment, manage and keep track of what's ahead</p>
                 </div>
             </div>
-        </div>
+        </div> 
 
 
         <div class="row appointment-wrapper row-cols-2">
             <div class="col-4">
                 <div class="title-status-container">
                     <div class="appointment-overview-wrapper d-flex align-items-center">
-                        <span><i class="fa-solid fa-square-check"></i></span>
+                        <div class="appointment-overview-wrapper-icon bg-primary">
+                        <span><i class="fa-solid fa-calendar-days"></i></span>
+                        </div>
                         <div class="appointment-overview">
-                            <p>Completed</p>
+                            <p>Upcoming</p>
                             <p><span id="patients-completed" class="patient-overview-p">24</span></p>
                         </div>
                     </div>
@@ -29,16 +31,20 @@
 
                 <div class="title-status-container">
                     <div class="appointment-overview-wrapper d-flex align-items-center">
-                        <span><i class="fa-solid fa-clock"></i></span>
+                        <div class="appointment-overview-wrapper-icon bg-warning">
+                        <span><i class="fa-solid fa-calendar"></i></span>
+                        </div>
                         <div class="appointment-overview">
-                            <p>This Month</p>
+                            <p>Pending</p>
                             <p><span id="patient-thismonth" class="patient-overview-p">24</span></p>
                         </div>
                     </div>
                 </div>
                 <div class="title-status-container">
                     <div class="appointment-overview-wrapper d-flex align-items-center">
-                        <span><i class="fa-solid fa-circle-xmark"></i></span>
+                        <div class="appointment-overview-wrapper-icon bg-danger">
+                        <span><i class="fa-solid fa-calendar-xmark"></i></span>
+                        </div>
                         <div class="appointment-overview">
                             <p>Cancelled</p>
                             <p><span id="patient-cancelled" class="patient-overview-p">24</span></p>
@@ -92,17 +98,14 @@
     </div>
 </section>
 
-
+ 
 
 <!---------Calendar-------------->
 <section class="shared-calendar-appointment-section" id="calendar-appointments-section">
       <div class="shared-calendar-appointments-wrapper">
         <div class="shared-appointment-wrapper">
             <div class="shared-appointment-title-wrapper">
-                <h2>Appointments</h2>
-                <div class="shared-appointment-p">
-                    <p>See what's your appointments for today</p>
-                </div>
+                <h2>Appointment Calendar</h2>
             </div>
         </div>
         <div class="shared-appointment-prev-next-month">
@@ -112,7 +115,7 @@
             <div class="shared-edit-scheduler">
                 <button class="shared-edit-scheduler-btn" title="edit an appointment" data-target="">Edit</button>
                 <div class="shared-appointment-edit-schedule">
-                    <button class="shared-edit-sched" id="edit-schedule" title="Add an Appointment" tabindex="0" data-target="shared-calendar-appointment-section">Add</button>
+                    <button class="shared-edit-sched" id="edit-schedule" title="Add an Appointment" >Add</button>
                 </div>
             </div>
         </div>
@@ -218,7 +221,7 @@
 
 
 <!---------ADD AN APPOINTMENT Modal-------------->
-<section data-id="shared-edit-appointment-schedule-id" class="shared-edit-appointment-schedule-modal">
+<section id="shared-edit-appointment-schedule-id" class="shared-edit-appointment-schedule-modal">
     <div class="shared-edit-appointment-wrapper">
         <div class="shared-appointment-close-modal">
             <button class="shared-appointment-close-modal-btn">&times;</button>

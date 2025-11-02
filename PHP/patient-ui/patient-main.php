@@ -1,23 +1,11 @@
 <?php
-session_start();
-// include('../../PHP/config/connection.php'); // Adjust the path based on your folder structure
+require_once("../config/check-session-folder/check-session-patient.php"); // ✅ Correct relative path
 
-// // Assuming patient details are stored in the session after login
-// $patient_id = $_SESSION['patient_id'] ?? null;
-
-// if ($patient_id) {
-//     $query = "SELECT * FROM patients WHERE patient_id = '$patient_id'";
-//     $result = mysqli_query($conn, $query);
-//     $patient = mysqli_fetch_assoc($result);
-// } else {
-//     header("Location: ../../HTML/user-interface/index.html");
-//     exit;
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head>  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -159,7 +147,7 @@ session_start();
 
                 <!-- Logout -->
                 <div class="sidebar-logout pe-2">
-                    <a href="../../PHP/user-interface/index.php" class="btn-sidebar sidebar-logout-btn d-flex align-items-center" id="logoutBtn">
+                <a href="../../PHP/config/logout.php" class="btn-sidebar sidebar-logout-btn d-flex align-items-center" id="logoutBtn">
                         <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
                     </a>
                 </div>
